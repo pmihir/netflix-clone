@@ -22,6 +22,10 @@ $ npm install
 $ npm run dev
 ```
 
+### 🚀 Demo Video
+
+https://github.com/user-attachments/assets/ea16e63b-fbe7-47ec-be90-b2dd4031fbde
+
 ### 🚀 Technologies
 
 - ReactJS
