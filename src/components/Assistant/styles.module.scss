@@ -1,0 +1,399 @@
+.chatButton {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--netflix-red);
+    color: var(--netflix-white);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: darken(#e50914, 10%);
+    }
+  }
+  
+  .chatButtonHidden {
+    transform: scale(0);
+    opacity: 0;
+  }
+  
+  .chatIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .chatWindow {
+    position: fixed;
+    z-index: 50;
+    transition: all 0.3s ease;
+    background-color: var(--netflix-black);
+    border: 1px solid #333;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
+  
+  .chatWindowOpen {
+    bottom: 24px;
+    right: 24px;
+    width: 350px;
+    height: 500px;
+    border-radius: 8px;
+    opacity: 1;
+    transform: scale(1);
+  
+    @media (min-width: 640px) {
+      width: 400px;
+    }
+  }
+  
+  .chatWindowClosed {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+  
+  .chatWindowMinimized {
+    height: 60px;
+    border-radius: 30px;
+  }
+  
+  .chatHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #141414;
+    padding: 12px 16px;
+    border-bottom: 1px solid #333;
+  }
+  
+  .chatHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .chatLogo {
+    width: 32px;
+    height: 32px;
+    background-color: var(--netflix-red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .chatLogoIcon {
+    width: 20px;
+    height: 20px;
+    color: var(--netflix-white);
+  }
+  
+  .chatTitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--netflix-white);
+  }
+  
+  .chatHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .chatHeaderButton {
+    background: none;
+    border: none;
+    color: #999;
+    transition: color 0.2s ease;
+  
+    &:hover {
+      color: var(--netflix-white);
+    }
+  }
+  
+  .chatHeaderIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .chatMessages {
+    height: 380px;
+    padding: 16px;
+    overflow-y: auto;
+    background-color: var(--netflix-black);
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #141414;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+  }
+  
+  .messagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .message {
+    display: flex;
+    max-width: 80%;
+  }
+  
+  .userMessage {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+  
+  .assistantMessage {
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+  
+  .messageContent {
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+  }
+  
+  .userMessage .messageContent {
+    background-color: var(--netflix-red);
+    color: var(--netflix-white);
+    border-bottom-right-radius: 4px;
+  }
+  
+  .assistantMessage .messageContent {
+    background-color: #333;
+    color: var(--netflix-white);
+    border-bottom-left-radius: 4px;
+  }
+  
+  .typingIndicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    span {
+      width: 8px;
+      height: 8px;
+      background-color: #666;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      
+      &:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+  
+  .listeningIndicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .listeningDot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: var(--netflix-white);
+      border-radius: 50%;
+      animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.75;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: var(--netflix-white);
+      border-radius: 50%;
+    }
+  }
+  
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .chatInputContainer {
+    padding: 12px;
+    border-top: 1px solid #333;
+    background-color: #141414;
+    display: flex;
+  }
+  
+  .chatInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .chatInput {
+    flex: 1;
+    background-color: #333;
+    color: var(--netflix-white);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 40px 8px 16px;
+    font-size: 14px;
+    outline: none;
+    
+    &::placeholder {
+      color: #999;
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.3);
+    }
+  }
+  
+  .voiceButton {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: var(--netflix-white);
+    }
+  }
+  
+  .voiceButtonActive {
+    color: var(--netflix-red);
+  }
+  
+  .voiceIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .sendButton {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--netflix-red);
+    color: var(--netflix-white);
+    border: none;
+    transition: background-color 0.2s ease;
+    
+    &:hover:not(:disabled) {
+      background-color: darken(#e50914, 10%);
+    }
+    
+    &:disabled {
+      background-color: #666;
+      cursor: not-allowed;
+    }
+  }
+  
+  .sendIcon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .voiceStatus {
+    margin-top: 8px;
+    text-align: center;
+  }
+  
+  .voiceStatusIndicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    background-color: rgba(229, 9, 20, 0.2);
+    color: var(--netflix-red);
+    font-size: 12px;
+  }
+  
+  .voiceStatusDot {
+    position: relative;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: var(--netflix-red);
+      border-radius: 50%;
+      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+      opacity: 0.75;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: var(--netflix-red);
+      border-radius: 50%;
+    }
+  }
+  
+  .movieLink {
+    color: #e88e90;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: var(--netflix-red);
+    }
+  }
+  
