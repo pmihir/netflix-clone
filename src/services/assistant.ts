@@ -30,7 +30,7 @@ if (!GROQ_API_KEY) {
 
 const GROQ_API_CONFIG = {
   baseURL: "https://api.groq.com/openai/v1/chat/completions",
-  model: "gemma2-9b-it",
+  model: "llama-3.1-8b-instant",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${GROQ_API_KEY}`,
